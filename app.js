@@ -12,28 +12,35 @@ app.get('/currenttime', function(req, res) {
 } );
 
 app.get('/board', function(req, res){
-    res.send('<form action="/store-user" method="POST"><label>Your Name</label><input type="text" name="username"><button>Submit</button></form>');
+    const htmlFilePath = path.join(__dirname, 'frontend', 'board.html');
+    res.sendFile(htmlFilePath);
 });
 
 app.get('/image-upload', function(req, res){
 
+    const htmlFilePath = path.join(__dirname, 'frontend', 'image-upload.html');
+    res.sendFile(htmlFilePath);
 });
 
 app.get('/login', function(req,res){
-
+    const htmlFilePath = path.join(__dirname, 'frontend', 'login.html');
+    res.sendFile(htmlFilePath);
 });
 
 app.get('/my-info', function(req,res){
-
+    const htmlFilePath = path.join(__dirname, 'frontend', 'my-info.html');
+    res.sendFile(htmlFilePath);
 });
 
 app.get('/search', function(req,res){
-
+    const htmlFilePath = path.join(__dirname, 'frontend', 'search.html');
+    res.sendFile(htmlFilePath);
 });
 
 app.get('/find-password', function(req,res)
 {
-
+    const htmlFilePath = path.join(__dirname, 'frontend', 'find-password.html');
+    res.sendFile(htmlFilePath);
 });
 
 
