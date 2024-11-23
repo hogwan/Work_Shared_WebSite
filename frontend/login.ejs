@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <div class="login-container">
+        <h1>Login / Register</h1>
+        <form class="login-form">
+            <div class="login-field">
+                <input type="text" id="user-id" placeholder="ID" required>
+            </div>
+            <div class="login-field">
+                <input type="password" id="user-password" placeholder="PASSWORD" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+            <div class="forgot-password">
+                <a href="./find-password.html">Forget Password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+    </script>
+</body>
+</html>

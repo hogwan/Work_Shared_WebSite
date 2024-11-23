@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/search-result.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="search-result-container">
+        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+        <button id="search-button">검색</button>
+        <h2>검색 결과</h2> <!-- 검색 결과 텍스트 추가 -->
+        <div class="result-grid">
+            <div class="result-item" data-id="1">
+                <img src="../images/search1.jpg" alt="Search Result 1">
+                <p>Made by. 홍길동</p>
+            </div>
+            <div class="result-item" data-id="2">
+                <img src="../images/search2.jpg" alt="Search Result 2">
+                <p>Made by. 만세</p>
+            </div>
+            <div class="result-item" data-id="3">
+                <img src="../images/search3.jpg" alt="Search Result 3">
+                <p>Made by. 스위스</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+
+        // 검색 결과 클릭 이벤트
+        document.querySelectorAll('.result-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const id = item.getAttribute('data-id');
+                window.location.href = `board-info.html?id=${id}`;
+            });
+        });
+    </script>
+</body>
+</html>

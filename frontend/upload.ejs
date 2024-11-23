@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 업로드 페이지</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/upload.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <div class="upload-container">
+        <h1>Image Upload</h1>
+        <div class="upload-form">
+            <!-- Left Section: Image Upload -->
+            <div class="upload-image">
+                <input type="file" id="file-upload" class="upload-input" accept="image/*">
+                <div id="image-preview-container">
+                    <label for="file-upload" class="upload-label">사진 업로드</label>
+                    <!-- 업로드된 이미지 미리보기가 여기에 표시됩니다 -->
+                </div>
+            </div>
+            <!-- Right Section: Details -->
+            <div class="upload-details">
+                <div class="upload-field">
+                    <label for="title">작품명</label>
+                    <input type="text" id="title" placeholder="작품명을 입력하세요">
+                </div>
+                <div class="upload-field">
+                    <label for="description">작품 설명</label>
+                    <textarea id="description" placeholder="작품 설명을 입력하세요"></textarea>
+                </div>
+                <div class="upload-field">
+                    <label>태그</label>
+                    <div class="tags">
+                        <input type="text" class="tag-input" placeholder="# 태그 추가">
+                        <button class="tag-add-button">+ 추가</button>
+                        <div id="tags-container"></div> <!-- 추가된 태그가 여기에 표시됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <button class="upload-submit-button">올리기</button>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+    </script>
+
+    <script src="./upload.js"></script>
+</body>
+</html>

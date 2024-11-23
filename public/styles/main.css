@@ -1,0 +1,41 @@
+/* Header 컨테이너 스타일 (기존) */
+#header-container {
+  display: flex;
+  justify-content: space-between; /* 좌우 정렬 */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa; /* 헤더 배경색 */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 헤더 아래 그림자 */
+}
+
+/* 검색창 컨테이너 스타일 */
+.main-warp-search {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 정렬 */
+  margin-top: 20px; /* 헤더와 검색창 사이 간격 */
+  width: 100%; /* 너비 100%로 설정 */
+}
+
+
+
+.main-warp-search input {
+  padding: 10px;
+  width: 300px; /* 입력창 너비 */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; /* 버튼과 간격 */
+}
+
+.main-warp-search button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.main-warp-search button:hover {
+  background-color: #0056b3;
+}

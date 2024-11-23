@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/search-result.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="search-result-container">
+        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+        <button id="search-button">검색</button>
+        <h2 id="search-title">검색 결과</h2> <!-- 검색 결과 텍스트 추가 -->
+        <div class="result-grid" id="result-grid">
+            <!-- 검색 결과가 표시될 공간 -->
+        </div>
+        <p id="no-results" style="display: none; text-align: center;">검색 결과가 없습니다.</p>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+
+        // 가상의 게시물 데이터 (백엔드와 연동 시 이 부분은 서버 요청으로 대체)
+        const boards = [
+            { id: 1, title: '산', tags: ['자연', '풍경'], image: '../images/search1.jpg', creator: '홍길동' },
+            { id: 2, title: '바다', tags: ['물', '여행'], image: '../images/search2.jpg', creator: '만세' },
+            { id: 3, title: '도시', tags: ['건축', '밤'], image: '../images/search3.jpg', creator: '스위스' },
+        ];
+
+        // URL에서 검색 키워드 가져오기
+        const params = new URLSearchParams(window.location.search);
+        const keyword = params.get('keyword');
+
+        const resultGrid = document.getElementById('result-grid');
+        const noResults = document.getElementById('no-results');
+        const searchInput = document.getElementById('search-input');
+        const searchTitle = document.getElementById('search-title');
+
+        // 검색 결과 필터링
+        const updateResults = (searchKeyword) => {
+            resultGrid.innerHTML = ''; // 기존 내용을 초기화
+            const filteredBoards = boards.filter(board =>
+                board.title.includes(searchKeyword) || board.tags.some(tag => tag.includes(searchKeyword))
+            );
+
+            if (filteredBoards.length > 0) {
+                noResults.style.display = 'none';
+                searchTitle.textContent = `"${searchKeyword}" 검색 결과`;
+                filteredBoards.forEach(board => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    resultItem.setAttribute('data-id', board.id);
+                    resultItem.innerHTML = `
+                        <img src="${board.image}" alt="${board.title}">
+                        <p>Made by. ${board.creator}</p>
+                    `;
+                    resultItem.addEventListener('click', () => {
+                        window.location.href = `board-info.html?id=${board.id}`;
+                    });
+                    resultGrid.appendChild(resultItem);
+                });
+            } else {
+                noResults.style.display = 'block';
+                searchTitle.textContent = `"${searchKeyword}" 검색 결과`;
+            }
+        };
+
+        // 페이지 로드 시 검색어 반영
+        if (keyword) {
+            searchInput.value = keyword;
+            updateResults(keyword);
+        }
+
+        // 검색 버튼 클릭 이벤트
+        document.getElementById('search-button').addEventListener('click', () => {
+            const newKeyword = searchInput.value.trim();
+            if (newKeyword) {
+                window.location.href = `search-result.html?keyword=${encodeURIComponent(newKeyword)}`;
+            }
+        });
+
+        // 검색 창에서 Enter 키 입력 처리
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const newKeyword = searchInput.value.trim();
+                if (newKeyword) {
+                    window.location.href = `search-result.html?keyword=${encodeURIComponent(newKeyword)}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

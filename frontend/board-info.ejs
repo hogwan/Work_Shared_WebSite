@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작품 정보</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/board-info.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="board-info-container">
+        <div class="artwork-image">
+            <img src="../images/art1.jpg" alt="Artwork Image">
+        </div>
+        <div class="artwork-details">
+            <h2>작품명: 웃는개</h2>
+            <p>작품 설명: 이 작품은 매우 귀엽고 사랑스러운 개를 주제로 제작되었습니다.</p>
+            <div class="tags">
+                <span>#사랑스러움</span>
+                <span>#동물</span>
+                <span>#행복</span>
+                <span>#웃음</span>
+                <button id="add-tag">+ 추가</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+    </script>
+</body>
+</html>

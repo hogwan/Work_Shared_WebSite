@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div id="header-container">
+        <img src="logo.png" alt="UPIMAGE 로고">
+        <input type="search" id="main-search-input" placeholder="원하는 이미지를 검색해보세요">
+        <button id="main-search-button">검색</button>
+    </div>
+
+    <div class="main">
+        <div class="main-warp">
+            <form class="main-warp-search">
+                <input type="search" id="main-warp-search-input" placeholder="원하는 이미지를 검색해보세요">
+                <button type="button" id="main-warp-search-button">검색</button>
+            </form>
+            <div class="main-warp-boards" id="main-warp-boards">
+                <!-- 게시판 내용 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../components/main.js"></script>
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+
+        // 검색 이벤트
+        const handleSearch = (inputId) => {
+            const searchInput = document.getElementById(inputId).value.trim();
+            if (searchInput) {
+                window.location.href = `search-result.html?keyword=${encodeURIComponent(searchInput)}`;
+            }
+        };
+
+        document.getElementById('main-search-button').addEventListener('click', () => handleSearch('main-search-input'));
+        document.getElementById('main-warp-search-button').addEventListener('click', () => handleSearch('main-warp-search-input'));
+    </script>
+</body>
+</html>

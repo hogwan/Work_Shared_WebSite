@@ -1,0 +1,61 @@
+.board-info-container {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 20px;
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.board-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* 왼쪽: 이미지 섹션 */
+.board-image {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.board-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; /* 이미지 비율 유지 */
+}
+
+/* 오른쪽: 상세 정보 섹션 */
+.board-details {
+  width: 50%;
+}
+
+.board-details p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.board-details .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.board-details .tag {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
