@@ -1,0 +1,20 @@
+<%- include('includes/head.ejs', { title: 'main' }) %>
+</head>
+<body>
+  <%- include('includes/header.ejs') %>
+  <link rel="stylesheet" href="/styles/imagesSort.css">
+        <% for (var i = 0; i < images.length / 5 + 1;i++) { %>
+          <ul class="column">
+            <% for(var j = 0 ; j<4 ; j++ ) {%>
+                <% if(i+j == images.length) break; %>
+                    <li class="row" class="user-item">
+                        <img src="<%= images[i + j].imagePath %>" width="300" height="300" alt="The image of the user.">
+                        <% if (images[i+j].user) {%>
+                            <p>made by. <br> <%= images[i + j].user.email %></p>
+                        <% } %>
+                  </li>
+                <% } %>
+          </ul>
+        <% } %>
+</body>
+</html>

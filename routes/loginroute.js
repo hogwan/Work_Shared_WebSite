@@ -5,10 +5,6 @@ const db = require('../data/database');
 
 const router = express.Router();
 
-router.get('/', function (req, res) {
-  res.render('welcome');
-});
-
 router.get('/signup', function (req, res) { 
   let sessionInputData = req.session.inputData;
 

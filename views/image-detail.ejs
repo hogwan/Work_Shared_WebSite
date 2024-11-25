@@ -1,0 +1,40 @@
+<%- include('includes/head.ejs', { title: 'ImageUpload' }) %>
+</head>
+<body>
+  <%- include('includes/header.ejs') %>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/upload.css">
+    <script src="/scripts/file-preview.js" defer></script>
+    <script src="/scripts/addTag.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <div class="upload-container">
+        <h1>Image Upload</h1>
+            <div class="upload-form">
+                <div class="upload-image">
+                    <div id="image-preview-container">
+                      <img src="<%= image.imagePath %>" alt="The image of the user.">
+                    </div>
+                </div>
+                <div class="upload-details">
+                    <div class="upload-field">
+                        <label for="title">작품명</label>
+                        <p id="title"><%= image.imageName %></p>
+                    </div>
+                    <div class="upload-field">
+                        <label for="description">작품 설명</label>
+                        <p id="description"><%= image.imageExplain %></p>
+                    </div>
+                    <div class="upload-field">
+                        <label>태그</label>
+                        <div class="tags">
+                            <p class="tag-input" id="tagInput"><%= image.imageTag %></p>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>

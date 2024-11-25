@@ -3,9 +3,17 @@
 <body>
   <%- include('includes/header.ejs') %>
   <main>
-    <h1>The Profile Page</h1>
-    <p>Your profile.</p>
-
+      <ul>
+        <% for (const user of users) { %>
+          <li class="user-item">
+            <article>
+              <img src="<%= user.imagePath %>" alt="The image of the user.">
+              <h2><%= user.name %></h2>
+            </article>
+          </li>
+        <% } %>
+      </ul>
+    </section>
   </main>
 </body>
 </html>
