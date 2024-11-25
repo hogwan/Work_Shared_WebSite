@@ -1,41 +1,41 @@
-const fs = require('fs');
 const path = require('path');
 
 const express = require('express');
-const uuid = require('uuid');
+const session = require('express-session');
+const mongodbStore = require('connect-mongodb-session');
+
+const db = require('./data/database');
+const demoRoutes = require('./routes/demo');
+
+const MongoDBStore = mongodbStore(session);
 
 const app = express();
 
-app.set('frontend', path.join(__dirname, 'frontend'));
-app.set('frontend engine', 'ejs');
+const sessionStore = new MongoDBStore({
+  uri: 'mongodb://localhost:27017',
+  databaseName: 'auth-demo',
+  collection: 'sessions'
+});
 
-app.use(express.urlencoded({extended: false}));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
 
-app.get('/board', function(req, res){
-    res.render('board');
+app.use(session({
+  secret: 'super-secret',
+  resave: false,
+  saveUninitalized: false,
+  store: sessionStore,
+}));
+
+app.use(demoRoutes);
+
+app.use(function(error, req, res, next) {
+  res.render('500');
+})
+
+db.connectToDatabase().then(function () {
+  app.listen(3000);
 });
-
-app.get('/image-upload', function(req, res){
-
-    res.render('image-upload');
-});
-
-app.get('/login', function(req,res){
-    res.render('login');
-});
-
-app.get('/my-info', function(req,res){
-    res.render('my-info');
-});
-
-app.get('/search', function(req,res){
-    res.render('search');
-});
-
-app.get('/find-password', function(req,res)
-{
-    res.render('find-password');
-});
-
-app.listen(3000);
