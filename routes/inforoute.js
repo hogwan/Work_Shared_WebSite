@@ -47,8 +47,6 @@ router.get('/image/:email/profile', async function(req, res) {
     return res.status(404).render('404');
   }
 
-  const Inputemail = user.email.toString()
-
   res.render('profile', {user: user, images:images});
 });
 
@@ -59,7 +57,6 @@ router.get('/profile', async function(req,res){
     }
 
   const user = req.session.user;
-  req.session.isAuthenticated = false;
 
   const images = await db
   .getDb()

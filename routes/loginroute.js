@@ -111,10 +111,10 @@ router.post('/login', async function (req, res) {
 
 });
 
-router.post('/logout', function (req, res) {
-  req.session.user = null;
-  req.session.isAuthenticated = false;
-  res.redirect('/');
-});
+// router.post('/logout', function (req, res) {
+//   req.session.user = null;
+//   req.session.isAuthenticated = false;
+//   res.redirect('/');
+// });
 
 module.exports = router;
