@@ -7,6 +7,7 @@ const mongodbStore = require('connect-mongodb-session');
 const db = require('./data/database');
 const loginRoutes = require('./routes/loginroute');
 const uploadRoutes = require('./routes/uploadroute');
+const infoRoutes = require('./routes/inforoute')
 
 const MongoDBStore = mongodbStore(session);
 
@@ -35,6 +36,7 @@ app.use(session({
 
 app.use(loginRoutes);
 app.use(uploadRoutes);
+app.use(infoRoutes);
 
 app.use(function(error, req, res, next) {
   res.render('500');

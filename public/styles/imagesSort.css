@@ -1,14 +1,9 @@
 .column {
     list-style: none;
     height: 25rem;
-    width: 100rem;
-    display: flex;
-    justify-content:space-between;
+    width: 25rem;
     align-items: center;
     margin-left: 7rem;
     text-align: center;
-}
-
-.row {
     display:inline-block;
 }

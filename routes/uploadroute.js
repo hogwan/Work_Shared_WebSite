@@ -20,11 +20,21 @@ const upload = multer({ storage: storageConfig});
 const router = express.Router();
 
 router.get('/', async function(req, res) {
+  if(!req.session.isAuthenticated)
+  {
+    return res.render('login');
+  }
+
   const images = await db.getDb().collection('images').find().toArray();
   res.render('main', {images: images});
 });
 
 router.get('/upload', function(req, res) {
+  if(!req.session.isAuthenticated)
+  {
+    return res.render('login');
+  }
+
   res.render('upload');
 });
 
@@ -44,6 +54,22 @@ router.post('/main', upload.single('image'), async function(req,res){
   });
 
   res.redirect('/');
+});
+
+router.post('/search-main', async function(req,res){
+  const imageTag = req.body.search;
+  const images = await db
+  .getDb()
+  .collection('images')
+  .find({imageTag:imageTag})
+  .toArray();
+
+  if(!images)
+  {
+    return res.status(404).render('404');
+  }
+
+  res.render('search-main', {images : images});
 });
 
 module.exports = router;

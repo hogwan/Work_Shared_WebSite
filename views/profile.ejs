@@ -1,19 +1,65 @@
-<%- include('includes/head.ejs', { title: 'Admin' }) %>
+<%- include('includes/head.ejs', { title: 'profile' }) %>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/mypage.css">
 </head>
 <body>
-  <%- include('includes/header.ejs') %>
-  <main>
-      <ul>
-        <% for (const user of users) { %>
-          <li class="user-item">
-            <article>
-              <img src="<%= user.imagePath %>" alt="The image of the user.">
-              <h2><%= user.name %></h2>
-            </article>
-          </li>
-        <% } %>
-      </ul>
-    </section>
-  </main>
+    <header id="main-header">
+        <nav class="left">
+          <a href="/upload" class="left"><image src="/upload.png" width="50" height="50"></image></a>
+        </nav>
+        <nav class="center">
+          <a href="/" class="center"><image src="/logo.png" width="90" height="90"></image></a>
+        </nav>
+        <nav class="right">
+          <ul>
+            <li><a href="/notice"><image src="/notice.png" width="50" height="50"></image></a></li>
+            <li>|</li>
+            <li><a href="/profile"><image src="/profile.png" width="50" height="50"></image></a></li>
+          </ul>
+        </nav>
+      </header>
+      <hr>
+    <div id="header-container"></div>
+    <div class="mypage-container">
+        <h1><%= user.email %> 의 작품</h1>
+        <div class="profile-section">
+            <div class="profile-info">
+
+            </div>
+            <hr>
+        <hr class="separator">
+        </div>
+        <div class="my-artworks">
+            <div class="artwork-grid">
+                <% for (const image of images)  {%>
+                    <% if(image && image.user && image.user.email) { %>
+                        <% if(image.user.email === user.email) { %>
+                            <div class="artwork-item">
+                                <a href="/image/<%= image._id%>">
+                                    <img src="/<%= image.imagePath %>">
+                                </a>
+                            </div>  
+                        <% } %>
+                    <%  } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadHeader } from '../components/header.js';
+        loadHeader('header-container');
+
+        // 클릭 시 작품 정보 페이지로 이동
+        document.querySelectorAll('.artwork-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const id = item.getAttribute('data-id');
+                if (id) {
+                    window.location.href = `board-info.html?id=${id}`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

@@ -106,25 +106,9 @@ router.post('/login', async function (req, res) {
   req.session.isAuthenticated = true;
   req.session.save(function(){
     console.log('User is authenticated!');
-    res.redirect('/admin');
+    res.redirect('/');
   })
 
-});
-
-router.get('/admin', function (req, res) {
-  if(!req.session.isAuthenticated)
-  {
-    return res.status(401).render('401');
-  }
-  res.render('admin');
-});
-
-router.get('/profile', function (req, res) {
-  if(!req.session.isAuthenticated)
-  {
-    return res.status(401).render('401');
-  }
-  res.render('profile');
 });
 
 router.post('/logout', function (req, res) {
