@@ -21,7 +21,13 @@
       <hr>
     <div id="header-container"></div>
     <div class="mypage-container">
-        <h1><%= user.email %> 의 작품</h1>
+        <h1><%= user.email %> 의 작품 <% if(isSelf) {%> <br>
+            <a href="/Logout">
+                <span>Logout</span>
+              </a>
+              <% } %>
+        </h1>
+        
         <div class="profile-section">
             <div class="profile-info">
 

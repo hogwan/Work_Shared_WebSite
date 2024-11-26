@@ -47,7 +47,9 @@ router.get('/image/:email/profile', async function(req, res) {
     return res.status(404).render('404');
   }
 
-  res.render('profile', {user: user, images:images});
+  const isSelf = (user.email === req.session.email);
+
+  res.render('profile', {user: user, images:images, isSelf:isSelf});
 });
 
 router.get('/profile', async function(req,res){
@@ -63,7 +65,9 @@ router.get('/profile', async function(req,res){
   .collection('images')
   .find().toArray();
 
-  res.render('profile', {user:user, images:images});
+  const isSelf = true;
+
+  res.render('profile', {user:user, images:images, isSelf: isSelf});
 })
 
 router.get('/notice', async function(req,res){
@@ -92,6 +96,7 @@ router.get('/image/:id/edit', async function(req,res){
 router.post('/image/:id/edit', async function(req,res){
   const imageId = new ObjectId(req.params.id);
 
+  console.log(imageId);
   await db.getDb()
   .collection('images')
   .updateOne(
@@ -106,8 +111,9 @@ router.post('/image/:id/edit', async function(req,res){
   );
 
   const image = await db.getDb().collection('images').findOne({_id: imageId});
-  
-  res.render('image-detail', {image: image});
+  const isSelf = true;
+  console.log(image);
+  res.render('image-detail', {image: image, isSelf: isSelf});
 });
 
 router.get('/image/:id/delete', async function(req,res){
@@ -119,5 +125,11 @@ router.get('/image/:id/delete', async function(req,res){
 
   res.redirect('/');
 });
+
+router.get('/logout', function(req,res){
+  req.session.isAuthenticated = false;
+  
+  res.render('login');
+})
 
 module.exports = router;
